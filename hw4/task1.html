@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+		class Car {
+			creator = "";
+			year_prod = 0;
+			avg_speed = 0;
+
+			constructor(creator, year_prod, avg_speed) {
+				this.creator = creator;
+				this.year_prod = year_prod;
+				this.avg_speed = avg_speed;
+			}
+
+			info() {
+				console.log("creator: " + this.creator);
+				console.log("year of production: " + this.year_prod);
+				console.log("average speed: " + this.avg_speed);
+			}
+
+			time_calc(dist) {
+				let t = dist / this.avg_speed;
+				
+				console.log("time in hour: " + (t += Math.floor(t/4)));
+			}
+		}
+
+		car1 = new Car("bmw", 1990, 100);
+		car1.info();
+		car1.time_calc(900);
+
+
+
+
+	</script>
+	
+</body>
+</html>

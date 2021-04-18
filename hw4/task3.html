@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+	
+	class Time {
+		hour = 0;
+		min = 0;
+		sec = 0;
+
+		constructor(hour, min, sec) {
+			this.hour = hour;
+			this.min = min;
+			this.sec = sec;
+		}
+
+		showTime() {
+			let show0 = x => (x < 10 ? "0" : "") + x;
+			console.log("Time: " + show0(this.hour) + ":" + show0(this.min) + ":" + show0(this.sec));
+		}
+
+		#changeTime() {
+		        if(this.sec > 59) { 
+			     this.min += Math.floor(this.sec/60);
+            	             this.sec %= 60;
+                         }
+                         if(this.min > 59) {
+            	              this.hour += Math.floor(this.min/60);
+            	              this.min %= 60;
+                         }
+                         if(this.hour > 23) {
+            	              this.hour %= 24;
+                         }
+		}
+
+		changeSec(sec=0) {
+			this.sec += sec;
+                        this.#changeTime();
+			this.showTime();
+		}
+
+		changeMin(min=0) {
+			this.min += min;
+			this.#changeTime();
+			this.showTime();
+		}
+
+		changeHour(hour=0) {
+			this.hour += hour;
+			this.#changeTime();
+			this.showTime();
+		}
+	}
+
+	time = new Time(20, 30, 45);
+	time.showTime();
+	time.changeSec(30);
+	time.changeMin(70);
+	time.changeHour(4);
+
+	</script>
+	
+</body>
+</html>

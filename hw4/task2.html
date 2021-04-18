@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+		class Fraction {
+			numerator = 0;
+			denominator = 0;
+
+			constructor(numerator, denominator) {
+				this.numerator = numerator;
+				this.denominator = denominator;
+			} 
+		}
+
+
+		function gcd(n, m) {
+			return m == 0 ? n : gcd(m, n % m);
+		}
+
+		function lcm(n, m) {
+		  	return n * m / gcd(n, m);
+		}
+
+		function reduce(obj) {
+			let gcdFrac = gcd(obj.numerator, obj.denominator);
+			obj.numerator /= Math.abs(gcdFrac);
+			obj.denominator /= Math.abs(gcdFrac);
+			return obj;
+		}
+
+		function createObj(numerator, denominator) {
+			newFrac = new Fraction(numerator, denominator);
+			return reduce(newFrac);
+		}
+
+		function add(obj1, obj2, sym = true) {
+			let den = lcm(obj1.denominator, obj2.denominator);
+			let num1 = obj1.numerator * den/obj1.denominator;
+			let num2 = obj2.numerator * den/obj2.denominator;
+			return sym ? createObj(num1+num2, den) : createObj(num1-num2, den);
+		}
+
+		function sub(obj1, obj2) {
+			return add(obj1, obj2, false);
+		}
+
+		function mult(obj1, obj2) {
+			let num = obj1.numerator*obj2.numerator;
+			let den = obj1.denominator*obj2.denominator;
+			return createObj(num, den);
+		}
+
+		function div(obj1, obj2) {
+			let num = obj1.numerator*obj2.denominator;
+			let den = obj1.denominator*obj2.numerator;
+			return createObj(num, den);
+		}
+
+		frac1 = new Fraction(3, 9);
+		frac2 = new Fraction(5, 6);
+
+		console.log(frac1, frac2);
+		console.log("addition: ", add(frac1, frac2));
+		console.log("subtraction:", sub(frac1, frac2));
+		console.log("multiplication: ", mult(frac1, frac2));
+		console.log("division: ", div(frac1, frac2));
+		console.log("reduce: ", reduce(frac1));
+
+	</script>
+	
+</body>
+</html>
