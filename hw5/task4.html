@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        
+        class Classroom {
+            name = "";
+            facName = "";
+            numOfSeats = 0;
+
+            constructor(name, facName, numOfSeats) {
+                this.name = name;
+                this.facName = facName;
+                this.numOfSeats = numOfSeats;
+            }
+        }
+
+        class Group {
+            name = "";
+            facName = "";
+            numOfStudents = 0;
+
+            constructor(name, facName, numOfStudents) {
+                this.name = name;
+                this.facName = facName;
+                this.numOfStudents = numOfStudents;
+            }
+        }
+
+        function printRoom(list) {
+            for(i of list) {
+                console.log("name: " + i.name + " | facultet: " + i.facName + " | number_of_seats: " + i.numOfSeats);
+            }
+        }
+
+        function printFacRoom(list, facName) {
+            console.log("Rooms for " + facName);
+            for(i of list) {
+                if(i.facName === facName){
+                    console.log("name: " + i.name + " | number_of_seats: " + i.numOfSeats);
+                }
+            }
+
+        }
+
+        function printRoomForFac(list, group) {
+            newList = list.filter(x => (x.facName == group.facName) && (x.numOfSeats >= group.numOfStudents));
+            printFacRoom(newList, group.facName);
+
+        }
+
+        function sortSeat(list) {
+            printRoom(list.sort((obj1, obj2) => obj1.numOfSeats - obj2.numOfSeats));
+        }
+
+        function sortName(list) {
+            printRoom(list.sort((obj1, obj2) => {
+                    if(obj1.name > obj2.name) return 1;
+                    if(obj1.name < obj2.name) return -1;
+                    if(obj1.name == obj2.name) return 0;
+                    }))
+        }
+
+        classroom1 = new Classroom("B101", "SCS", 17);
+        classroom2 = new Classroom("B202", "Math", 19);
+        classroom3 = new Classroom("A311", "EEE", 14);
+        classroom4 = new Classroom("C102", "Math", 16);
+        classroom5 = new Classroom("A123", "ME", 11);
+        group1 = new Group("PY123", "Math", 17);
+
+        listRoom = [classroom1, classroom2, classroom3, classroom4, classroom5];
+
+        printRoom(listRoom);
+        // printFacRoom(listRoom, "Math");
+        // printRoomForFac(listRoom, group1);
+        // sortSeat(listRoom);
+        // sortName(listRoom);
+
+    </script>
+    
+</body>
+</html>

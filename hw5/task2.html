@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        class Purchase {
+            name = "";
+            count = 0;
+            unitPrice = 0;
+
+            constructor(name, count, unitPrice) {
+                this.name = name;
+                this.count = count;
+                this.unitPrice = unitPrice;
+            }
+        }
+
+        function printReceipt(list) {
+            for(let i of list) {
+                console.log("name: " + i.name + " | count: " + i.count + " | unit_price: " + i.unitPrice);
+
+            }
+        }
+
+        function sumOfReceipt(list) {
+            return list.reduce((x, y) => x + y.count*y.unitPrice, 0)
+        }
+
+        function maxPrice(list) {
+            return list.reduce((x, y) => x.count*x.unitPrice > y.count*y.unitPrice ? x : y, 0);
+        }
+
+        function avrReceipt(list) {
+            sumPurchase = sumOfReceipt(list);
+            countPurchase = list.reduce((x, y) => x + y.count, 0); 
+            return sumPurchase/countPurchase;
+        }
+
+        product_1 = new Purchase("keyboard", 1, 10000);
+        product_2 = new Purchase("mouse", 1, 5000);
+        product_3 = new Purchase("keycaps", 30, 50);
+        product_4 = new Purchase("aircool", 8, 400);
+        receipt = [product_1, product_2, product_3, product_4];
+
+        printReceipt(receipt);
+        console.log("sum of receipt:", sumOfReceipt(receipt));
+        console.log("max price: ", maxPrice(receipt));
+        console.log("avr receipt: ", avrReceipt(receipt));
+
+    </script>
+    
+</body>
+</html>

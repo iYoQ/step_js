@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        
+        class Css_style {
+            name = "";
+            value = "";
+
+            constructor(name, value) {
+                this.name = name;
+                this.value = value;
+            }
+        }
+
+        function printTextCss(arr, text) {
+            document.write("<p style='", arr.map(x => Object.values(x).join(":")).join("; "), "'>", text, "</p>");
+        }
+
+        textColor = new Css_style("color", "purple");
+        textSize = new Css_style("font-size", "30pt");
+        textAlign = new Css_style("text-align", "center");
+        textDecoration = new Css_style("text-decoration", "underline");
+        textFontStyle = new Css_style("font-style", "italic");
+
+        arrCss = [textColor, textSize, textAlign, textDecoration, textFontStyle];
+
+        printTextCss(arrCss, "Lorem ipsum dolor sit amet.");
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

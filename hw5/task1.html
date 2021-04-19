@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Product {
+            name = "";
+            need_count = 0;
+            buy = false;
+
+            constructor(name, need_count, buy) {
+                this.name = name;
+                this.need_count = need_count;
+                this.buy = buy;
+            }
+
+        }
+
+        function printSortList(list) {
+            let sortList = list.slice().sort((obj1, obj2) => obj1.buy - obj2.buy);
+            for(i of sortList) {
+                console.log("name: " + i.name + " | count: " + i.need_count + " | buy: " + i.buy);
+            }
+        }
+
+        function buy(obj) {
+            obj.need_count = 0;
+            obj.buy = true;
+        }
+
+        function checkBuy(obj) {
+            if(obj.need_count < 0) {
+                obj.need_count = 0
+            }
+
+            (obj.need_count == 0) || (obj.need_count == 1) ? buy(obj) : obj.need_count -= 1;
+        }
+
+        function addPurchase(list, obj) {
+            list.includes(obj) ? checkBuy(obj) : list.push(obj);
+        }      
+
+        product_1 = new Product("apple", 5, false);
+        product_2 = new Product("bread", 1, false);
+        product_3 = new Product("salt", 3, false);
+        product_4 = new Product("sugar", 2, false);
+        listPurchase = [product_1, product_2, product_3];
+
+        addPurchase(listPurchase, product_4);
+        addPurchase(listPurchase, product_2);
+        addPurchase(listPurchase, product_4);
+        buy(product_1);
+        printSortList(listPurchase);
+
+    </script>
+    
+</body>
+</html>
