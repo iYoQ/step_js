@@ -27,21 +27,25 @@
             }
         }
 
-        function buy(obj) {
-            obj.need_count = 0;
-            obj.buy = true;
+        function buy(list, name) {
+            list.map(x => {
+                if(x.name == name) {
+                    x.need_count = 0;
+                    x.buy = true;
+                }
+            });
         }
 
-        function checkBuy(obj) {
+        function checkBuy(list, obj) {
             if(obj.need_count < 0) {
                 obj.need_count = 0
             }
 
-            (obj.need_count == 0) || (obj.need_count == 1) ? buy(obj) : obj.need_count -= 1;
+            (obj.need_count == 0) || (obj.need_count == 1) ? buy(list, obj.name) : obj.need_count -= 1;
         }
 
         function addPurchase(list, obj) {
-            list.includes(obj) ? checkBuy(obj) : list.push(obj);
+            list.includes(obj) ? checkBuy(list, obj) : list.push(obj);
         }      
 
         product_1 = new Product("apple", 5, false);
@@ -53,7 +57,7 @@
         addPurchase(listPurchase, product_4);
         addPurchase(listPurchase, product_2);
         addPurchase(listPurchase, product_4);
-        buy(product_1);
+        buy(listPurchase, "apple");
         printSortList(listPurchase);
 
     </script>

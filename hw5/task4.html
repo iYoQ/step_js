@@ -56,10 +56,12 @@
         }
 
         function sortSeat(list) {
+            console.log("seat sorting:")
             printRoom(list.sort((obj1, obj2) => obj1.numOfSeats - obj2.numOfSeats));
         }
 
         function sortName(list) {
+            console.log("name sorting:")
             printRoom(list.sort((obj1, obj2) => {
                     if(obj1.name > obj2.name) return 1;
                     if(obj1.name < obj2.name) return -1;
@@ -69,18 +71,18 @@
 
         classroom1 = new Classroom("B101", "SCS", 17);
         classroom2 = new Classroom("B202", "Math", 19);
-        classroom3 = new Classroom("A311", "EEE", 14);
+        classroom3 = new Classroom("A311", "EEE", 18);
         classroom4 = new Classroom("C102", "Math", 16);
-        classroom5 = new Classroom("A123", "ME", 11);
-        group1 = new Group("PY123", "Math", 17);
+        classroom5 = new Classroom("A123", "EEE", 11);
+        group1 = new Group("PY123", "EEE", 17);
 
         listRoom = [classroom1, classroom2, classroom3, classroom4, classroom5];
 
         printRoom(listRoom);
-        // printFacRoom(listRoom, "Math");
-        // printRoomForFac(listRoom, group1);
-        // sortSeat(listRoom);
-        // sortName(listRoom);
+        printFacRoom(listRoom, "Math");
+        printRoomForFac(listRoom, group1);
+        sortSeat(listRoom);
+        sortName(listRoom);
 
     </script>
     
