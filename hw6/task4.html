@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {
+            height: 200px;
+            width: 500px;
+            background-color: #ffe8bd;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #b1 {
+            height: 100px;
+            width: 70px;
+        }
+        #d1 {
+            height: 100px;
+            width: 100px;
+            border: 0;
+            border-radius: 50px;
+            background-color: grey;
+        }
+        #trfl {
+            height: 150px;
+            width: 370px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 3px solid grey;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="trfl">
+            <div id="d1"></div>
+            <div id="d1"></div>
+            <div id="d1"></div>
+        </div>
+        <button id="b1">NEXT</button>
+
+        <script>
+            list = ["#a72828", "#ffa600", "#31a21c"]
+            i = 0
+            b1.onclick = () => {
+                if(d1[i-1]) d1[i-1].style.backgroundColor = "grey";
+                if(i == 3) i = 0;
+                d1[i].style.backgroundColor = list[i];
+                i++
+            }
+        </script>
+    </div>
+
+</body>
+</html>

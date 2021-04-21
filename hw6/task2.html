@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #modal {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            justify-content: center;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 1;
+            overflow: auto;
+        }
+        #modal_window {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 100px;
+            width: 400px;
+            height: 150px;
+            background-color: #353335c9;
+            color: white;
+            font-size: 30px;
+        }
+        #open_modal {
+            height: 50px;
+            width: 100px;
+            margin: 50px 0 0 70px;
+        }
+        #close_modal {
+            height: 30px;
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <button id="open_modal">Open</button>
+    <div id="modal">
+        <div id="modal_window">
+            <p>Hi there!</p>
+            <button id="close_modal">Close</button>
+        </div>
+    </div>
+
+
+    <script>
+        open_modal.onclick = () => modal.style.display = "flex";
+        close_modal.onclick = () => modal.style.display = "none";
+    </script>
+</body>
+</html>

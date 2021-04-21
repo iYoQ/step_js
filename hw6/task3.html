@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #field {
+            width: 1920px;
+            height: 1080px;
+            background: url(img/field.jpg) no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        #ball {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: 1s all;
+        }
+    </style>
+</head>
+<body>
+    <div id="field">
+        <img src="img/ball.png" alt="" id="ball">
+    </div>
+
+    <script>
+        field.onclick = (e) => {
+            ball.style.left = e.clientX - 50 + 'px';
+            ball.style.top = e.clientY - 50 + 'px';
+        }
+    </script>
+</body>
+</html>
