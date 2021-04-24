@@ -16,7 +16,6 @@
             background-size: cover;
             position: relative;
         }
-
         #ball {
             position: absolute;
             left: 0;
@@ -30,11 +29,14 @@
         <img src="img/ball.png" alt="" id="ball">
     </div>
 
+
     <script>
-        field.onclick = (e) => {
+
+        field.addEventListener("click", (e) => {
             ball.style.left = e.clientX - 50 + 'px';
             ball.style.top = e.clientY - 50 + 'px';
-        }
+        });
+
     </script>
 </body>
 </html>

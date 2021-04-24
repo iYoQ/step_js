@@ -14,7 +14,7 @@
         p {
             font-size: 20px;
         }
-        input {
+        #in1 {
             width: 250px;
             border: none;
             outline: none;
@@ -36,12 +36,10 @@
     </div>
 
 
-
     <script>
-        in1.addEventListener('input', () => {
-            in1.value = in1.value.replace(/[0-9]/, "");
-        });
 
+        in1.addEventListener('input', () => in1.value = in1.value.replace(/[0-9]/, ""));
+        
     </script>
     
 </body>
