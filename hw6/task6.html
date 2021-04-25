@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        #b1 {
+            margin: 100px 50px 0 50px;
+            height: 50px;
+            width: 100px;
+        }
+        #b2 {
+            margin-top: 10px;
+            height: 50px;
+            width: 100px;
+        }
+        #tip {
+            height: 40px;
+            width: 100px;
+            border: 1px solid grey;
+            border-radius: 15px;
+            background-color: grey;
+            visibility: hidden;
+            position: absolute;
+            text-align: center;
+            color: white;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <button id="b1">Button 1</button>
+    <button id="b2">Button 2</button>
+    <div id="tip"></div>
+    
+
+    <script>
+
+        let buttons = Array.from(document.getElementsByTagName("button"));
+        for(i in buttons) {
+            buttons[i].addEventListener("mouseover", (e) => {
+                let coord = e.target.getBoundingClientRect();
+                tip.style.visibility = 'visible';
+                if(coord.top < coord.height) tip.style.top = coord.top + coord.height + 10 + 'px';
+                else tip.style.top = coord.top - coord.height + 'px';
+                tip.style.left = coord.left + 'px';
+                tip.textContent = "tooltip for " + e.target.textContent;
+            });
+            buttons[i].addEventListener("mouseout", () => tip.style.visibility = 'hidden');
+        }
+
+    </script>
+</body>
+</html>

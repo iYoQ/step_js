@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #main {
+            margin: 0;
+            padding-top: 20px;
+            width: 250px;
+            height: 300px;
+            background-color: #ffd2ab8c;
+        }
+        #pc {
+            display: none;
+        }
+        #show_c {
+            display: none;
+        }
+        #show_d {
+            display: none;
+        }
+        li:hover {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <ul>
+            <li id="start">This PC</li>
+                <ul id="pc">
+                    <li id="disk_c">Local Disk (C:)</li>
+                        <ul id="show_c">
+                            <li>Program Files</li>
+                            <li>Users</li>
+                            <li>Windows</li>
+                        </ul>
+                    <li id="disk_d">Local Disk (D:)</li>
+                        <ul id="show_d">
+                            <li>New Folder 1</li>
+                            <li>New Folder 2</li>
+                            <li>New Folder 3</li>
+                        </ul>
+                    <li>Local Disk (E:)</li>
+                </ul>
+        </ul>
+    </div>
+    <script>
+        
+        start.addEventListener("click", () => {
+            pc.style.display == 'block' ? pc.style.display = 'none' : pc.style.display = 'block';
+        });
+        disk_c.addEventListener("click", () => {
+            show_c.style.display == 'block' ? show_c.style.display = 'none' : show_c.style.display = 'block';
+        });
+        disk_d.addEventListener("click", () => {
+            show_d.style.display == 'block' ? show_d.style.display = 'none' : show_d.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

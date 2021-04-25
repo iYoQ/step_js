@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #list {
+            margin: 0;
+            padding-top: 10px;
+            width: 600px;
+            height: 160px;
+            background-color: #ffd2ab8c;
+        }
+        li {
+            width: 580px;
+        }
+    </style>
+</head>
+<body>
+    
+    <ol id="list">
+        <li>Уязвимости сетей мобильной связи на основе сетей SS7 // Positive Technologies</li>
+        <li>Rapid object detection using a boosted cascade of simple features // Paul Viola , Michael Jones.</li>
+        <li>Конечные цепи Маркова // Кемени Дж. Дж., Снелл Дж. Л.</li>
+        <li>Технологии программирования и хранения данных // М. Ленанд</li>
+        <li>A Short Introduction to Boosting // Journal of Japanese Society for Artificial Intelligence.</li>
+        <li>Секреты JavaScript ниндзя // Джон Резиг, Беэр Бибо</li>
+        <li>You Don't Know JS: Scope & Closures // Кайл Симпсон</li>
+    </ol>
+
+
+    <script>
+        function clear() {
+            books.map(x => x.style.backgroundColor = "");
+        }
+
+        let books = Array.from(list.getElementsByTagName("li"));
+        for(let i in books) {
+            books[i].addEventListener("click", (element) => {
+                clear();
+                element.target.style.backgroundColor =  "#ffa251";
+            });
+        }
+        document.addEventListener("click", (e) => {
+            if(e.target.localName != "li" && e.target.id != "list") clear();
+        });
+
+    </script>
+</body>
+</html>
