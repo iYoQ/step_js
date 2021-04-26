@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #txt {
+            width: 350px;
+            height: 70px;
+            border: 1px solid grey;
+            position: relative;
+            overflow: hidden;
+        }
+        #block {
+            margin: 1px;
+            width: 0;
+            height: 0;
+            border-bottom: 15px solid grey;
+            border-left: 15px solid transparent;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="txt">Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Excepturi tempore repellat vero expedita ad laborum molestiae labore, nam obcaecati ipsum!
+        <div id="block"></div>
+    </div>
+
+
+    <script>
+
+        startResize = e => {
+            txt.style.width = (e.clientX - txt.offsetLeft) + 'px';
+            txt.style.height = (e.clientY - txt.offsetTop) + 'px';
+        };
+
+        block.addEventListener("mousedown", () => {
+            window.addEventListener("mousemove", startResize);
+            window.addEventListener("mouseup", () => window.removeEventListener("mousemove", startResize));
+        });
+
+    </script>
+</body>
+</html>
