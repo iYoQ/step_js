@@ -40,13 +40,13 @@
         }
 
         let books = Array.from(list.getElementsByTagName("li"));
-        for(let i in books) {
-            books[i].addEventListener("click", (element) => {
+        for(let book of books) {
+            book.addEventListener("click", (element) => {
                 clear();
                 element.target.style.backgroundColor =  "#ffa251";
             });
         }
-        document.addEventListener("click", (e) => {
+        document.addEventListener("click", e => {
             if(e.target.localName != "li" && e.target.id != "list") clear();
         });
 

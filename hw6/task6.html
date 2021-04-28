@@ -45,7 +45,7 @@
 
         let buttons = Array.from(document.getElementsByTagName("button"));
         for(i in buttons) {
-            buttons[i].addEventListener("mouseover", (e) => {
+            buttons[i].addEventListener("mouseover", e => {
                 let coord = e.target.getBoundingClientRect();
                 tip.style.visibility = 'visible';
                 if(coord.top < coord.height) tip.style.top = coord.top + coord.height + 10 + 'px';

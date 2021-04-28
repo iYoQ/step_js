@@ -38,8 +38,8 @@
         };
 
         block.addEventListener("mousedown", () => {
-            window.addEventListener("mousemove", startResize);
-            window.addEventListener("mouseup", () => window.removeEventListener("mousemove", startResize));
+            document.addEventListener("mousemove", startResize);
+            document.addEventListener("mouseup", () => document.removeEventListener("mousemove", startResize));
         });
 
     </script>

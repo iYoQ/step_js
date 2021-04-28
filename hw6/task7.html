@@ -16,52 +16,52 @@
             height: 300px;
             background-color: #ffd2ab8c;
         }
-        #pc {
+        .list > ul {
             display: none;
         }
-        #show_c {
-            display: none;
+        li {
+            cursor: default;
         }
-        #show_d {
-            display: none;
-        }
-        li:hover {
+        li:hover::first-line{
             font-weight: bold;
         }
+        
     </style>
 </head>
 <body>
     <div id="main">
         <ul>
-            <li id="start">This PC</li>
-                <ul id="pc">
-                    <li id="disk_c">Local Disk (C:)</li>
-                        <ul id="show_c">
+            <li class="list">This PC
+                <ul>
+                    <li class="list">Local Disk (C:)
+                        <ul>
                             <li>Program Files</li>
                             <li>Users</li>
                             <li>Windows</li>
                         </ul>
-                    <li id="disk_d">Local Disk (D:)</li>
-                        <ul id="show_d">
+                    </li>
+                    <li class="list">Local Disk (D:)
+                        <ul>
                             <li>New Folder 1</li>
                             <li>New Folder 2</li>
                             <li>New Folder 3</li>
                         </ul>
+                    </li>
                     <li>Local Disk (E:)</li>
                 </ul>
+            </li>
         </ul>
     </div>
     <script>
         
-        start.addEventListener("click", () => {
-            pc.style.display == 'block' ? pc.style.display = 'none' : pc.style.display = 'block';
+        document.addEventListener("click", e => {
+            if(e.target.className == "list") {
+                let element = e.target.children[0];
+                let styleStart = getComputedStyle(element);
+                element.style.display = styleStart.display == "none" ? "block" : "none";
+            }
         });
-        disk_c.addEventListener("click", () => {
-            show_c.style.display == 'block' ? show_c.style.display = 'none' : show_c.style.display = 'block';
-        });
-        disk_d.addEventListener("click", () => {
-            show_d.style.display == 'block' ? show_d.style.display = 'none' : show_d.style.display = 'block';
-        });
+        
     </script>
 </body>
 </html>
