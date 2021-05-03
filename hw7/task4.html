@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #news {
+            width: 600px;
+            background-color: #ffdaa28c;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="news">
+        <h2>Lorem, ipsum dolor sit amet.</h2>
+        Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Eligendi, quod rerum nulla corrupti inventore iusto sed recusandae neque consequatur numquam pariatur. Velit qui corrupti doloremque quas obcaecati hic ab harum. Aspernatur aliquam animi dolores ad eaque assumenda deserunt alias non? Sunt, accusamus, temporibus. Iste, rerum atque! Eum magni corrupti quibusdam nemo numquam et ipsum animi, facere quia eos quaerat quod quos quae doloribus assumenda possimus saepe asperiores qui quo pariatur sed, corporis ducimus. Possimus nihil perspiciatis voluptatibus eligendi numquam dignissimos autem voluptate ut, placeat, quia quasi impedit provident. Magnam, officia, debitis. Animi sunt dolorem molestias optio ducimus laborum debitis possimus? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem velit saepe fuga ullam. Iure laboriosam quod at ut, dicta alias. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat sed quo facere, obcaecati maiores. Id aspernatur, voluptatem commodi, non sed eligendi neque cum ea recusandae, libero assumenda, aut quasi at.
+    </div>
+
+    <script>
+        newsList = ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima id corporis nulla dignissimos tempore deleniti necessitatibus praesentium numquam, et sed minus hic consectetur. Explicabo voluptates, maiores assumenda enim distinctio cupiditate quae ad voluptatum culpa iure sequi magnam eum, pariatur accusantium alias modi quod praesentium et sapiente rem, eveniet reiciendis, deserunt!', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, saepe! Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Consectetur quidem laboriosam explicabo dignissimos eaque ab quia sit, id omnis repellendus.', 'qwerty'];
+        i = 0;
+        scrolling = () => {
+            if(window.pageYOffset + window.innerHeight >= news.offsetHeight) { 
+                news.insertAdjacentHTML('beforeend', newsList[i]);
+                i++;
+            }
+            if (i > newsList.length - 1) window.removeEventListener('scroll', scrolling);
+        }
+
+        window.addEventListener('scroll', scrolling)
+
+
+        
+    </script>
+</body>
+</html>

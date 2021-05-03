@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #gallery {
+            width: 700px;
+            height: 400px;
+            background-color: #ffdaa28c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .arrow {
+            width: 100px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background-color: #ffffff00;
+
+        }
+        .arrow:hover {
+            background-color: #ffdaa28c;
+        }
+    </style>
+</head>
+<body>
+    <div id="gallery">
+        <button class="arrow" id="arrowLeft" disabled>&#8592;</button>
+        <img id="image" src="img/1.png" alt="" width="400px" height="300px">
+        <button class="arrow" id="arrowRight">&#8594;</button>
+    </div>
+
+    <script>
+        listImg = ['img/1.png', 'img/2.png', 'img/3.png'];
+        listLen = listImg.length - 1;
+        let i = 0;
+        
+        gallery.addEventListener('click', e => {
+            if(e.target.id == 'arrowRight') i++;
+            if(e.target.id == 'arrowLeft') i--;
+
+            i == listLen ? arrowRight.disabled = true : arrowRight.disabled = false;
+            i == 0 ? arrowLeft.disabled = true : arrowLeft.disabled = false;
+
+            image.src = listImg[i];
+        });
+
+    </script>
+</body>
+</html>

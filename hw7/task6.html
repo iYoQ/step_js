@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <ul id="list">
+        <li><a href="task6.html">task6.html</a></li>
+        <li><a href="http://google.com" class="out">http://google.com</a></li>
+        <li><a href="http://itstep.org" class="out">http://itstep.org</a></li>
+        <li><a href="http://mystat.itstep.org" class="out">http://mystat.itstep.org</a></li>
+        <li><a href="img/1.png">/img/1.png</a></li>
+    </ul>
+    
+    <script>
+        outer = Array.from(list.getElementsByClassName('out'));
+        outer.map(x => x.style.borderBottom = '1px dashed black');
+    </script>
+</body>
+</html>

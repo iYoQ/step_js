@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {
+            width: 500px;
+        }
+        .tittle {
+            border: 1px solid black;
+            color: white;
+            background-color: #8c8cea;
+            margin: 0;
+            height: 25px;
+        }
+        .text {
+            display: none;
+            background-color: #8c8cea85;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div>
+            <h3 class="tittle">Lorem, ipsum, dolor.</h3>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti saepe eius nisi perspiciatis sequi temporibus quidem, illo veniam molestiae perferendis!</div>
+        </div>
+        <div>
+            <h3 class="tittle">Lorem, ipsum.</h3>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, molestiae deserunt vero rerum, aspernatur magnam asperiores aliquam reprehenderit officiis sint accusamus non tenetur sed unde eaque obcaecati, quam, quod tempore?</div>
+        </div>
+        <div>
+            <h3 class="tittle">Lorem, ipsum, dolor. Lorem, ipsum.</h3>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis veniam nam soluta nisi itaque accusantium dolore voluptate beatae totam nesciunt?</div>
+        </div>
+        <div>
+            <h3 class="tittle">Lorem.</h3>
+            <div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, nostrum? Voluptatibus possimus beatae ullam consequuntur, odit odio assumenda eum. Deserunt voluptates laudantium perferendis sed commodi repellendus ullam quasi sunt ea. Laboriosam iste ipsa possimus dolore nesciunt blanditiis voluptatum, accusantium inventore.</div>
+        </div>
+    </div>
+
+
+    <script>
+        textDiv = Array.from(document.getElementsByClassName('text'));
+        
+        document.addEventListener("click", e => {
+            if(!(e.target.className == 'text')) textDiv.map(x => x.style.display = 'none');
+
+            if(e.target.className == "tittle") {
+                let element = e.target.nextElementSibling;
+                let styleStart = getComputedStyle(element);
+                element.style.display = styleStart.display == "none" ? "block" : "none";
+            }
+        });
+    </script>
+    
+</body>
+</html>

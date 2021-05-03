@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #block {
+            height: 70px;
+            width: 500px;
+            background-color: #ffdaa28c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #trackButton {
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            background-color: #4545f7;
+            border-radius: 50%;
+            top: -5px;
+            transition: none;
+            cursor: pointer;
+        }
+        #line {
+            position: relative;
+            height: 10px;
+            width: 400px;
+            background-color: #afcfe2;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="block">
+        <div id="line">
+            <div id="trackButton"></div>
+        </div>
+    </div>
+    
+
+    <script>
+        change = e => {
+            endLine = line.getBoundingClientRect().width
+            trackButton.style.left = (e.clientX - line.offsetLeft) + 'px';
+            if(trackButton.offsetLeft < 0) trackButton.style.left = 0 + 'px';
+            if(trackButton.offsetLeft > endLine) trackButton.style.left = endLine - 10 + 'px';
+            
+        }
+        trackButton.addEventListener('mousedown', () => {
+            document.addEventListener('mousemove', change);
+            document.addEventListener('mouseup', () => document.removeEventListener('mousemove', change));
+        });
+    </script>
+</body>
+</html>
