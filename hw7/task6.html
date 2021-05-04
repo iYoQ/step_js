@@ -20,8 +20,18 @@
     </ul>
     
     <script>
-        outer = Array.from(list.getElementsByClassName('out'));
+        // ver. 1
+        let outer = Array.from(list.getElementsByClassName('out'));
         outer.map(x => x.style.borderBottom = '1px dashed black');
+
+        // ver. 2
+        // let outer = Array.from(list.getElementsByTagName('a'));
+        // for(let link of outer) {
+        //     if(link.getAttribute('href').startsWith('http://')) {
+        //         link.style.borderBottom = '1px dashed black';
+        //     }    
+        // }
+
     </script>
 </body>
 </html>
