@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tbl {
+            background-color: #ffdaa28c;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td, th {
+            width: 100px;
+            height: 40px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table id="tbl">
+        <tr>
+            <th>Firstname</th>
+            <th>Lasname</th>
+            <th>Age</th>
+            <th>Company</th>
+        </tr>
+        <tr><td>Mark</td><td>Zuckerberg</td><td>34</td><td>Facebook</td></tr>
+        <tr><td>Larry</td><td>Page</td><td>45</td><td>Google</td></tr>
+        <tr><td>Timothy</td><td>Cook</td><td>57</td><td>Apple</td></tr>
+        <tr><td>Bill</td><td>Gates</td><td>62</td><td>Microsoft</td></tr>
+    </table>
+    
+    <script>
+        let tittles = Array.from(tbl.getElementsByTagName('th'));
+        let sortedTr = Array.from(tbl.getElementsByTagName('tr')).slice(1);
+
+        for(let index in tittles) {
+            tittles[index].addEventListener('click', () => {
+                sortedTr.sort((rowA, rowB) => {
+                    if(/^\d+$/.test(rowA.cells[index].textContent) && /^\d+$/.test(rowB.cells[index].textContent)) {
+                        return rowA.cells[index].textContent - rowB.cells[index].textContent;
+                    }
+                    return rowA.cells[index].textContent.localeCompare(rowB.cells[index].textContent);
+                });
+                for(let i = 0; i < sortedTr.length; i++) tbl.appendChild(sortedTr[i]);
+            });
+        }
+    </script>
+</body>
+</html>
