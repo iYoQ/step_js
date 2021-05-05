@@ -4,9 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #inp {
+            width: 500px;
+        }
+        #gnr {
+            width: 500px;
+            margin-top: 10px;
+        }
+        input {
+            width: 195px;
+        }
+        .showCalendar {
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #showDate {
+            font-weight: bold;
+        }
+        td, th {
+            border: 1px solid black;
+            text-align: center;
+        }
+        th {
+            background-color: #7d7d7d8c;
+        }
+    </style>
 </head>
 <body>
-    <!-- later -->
+    <div id="inp">
+       Month: <input type="text" id="month"> Year: <input type="text" id="year">
+    </div>
+    <button id="gnr">Generate</button>
+    <div class="showCalendar">
+        <p id="showDate"></p>
+        <table id="tbl"></table>
+    </div>
+    <script>
+        numDay = date => {
+            let day = date.getDay();
+            if(day == 0) day = 7;
+            return day - 1;
+        }
 
+        gnr.addEventListener('click', () => {
+            let date = new Date(year.value, month.value - 1);
+            showDate.textContent = date.toLocaleString('en-us', { month: 'long' }) + ', ' + date.getFullYear();
+            calendar = '<tr>';
+
+            for(let i = 0; i < numDay(date); i++) calendar += '<td></td>';
+
+            while(date.getMonth() == month.value-1) {
+                calendar += '<td>' + date.getDate() + '</td>';
+                if(numDay(date) % 7 == 6) calendar += '</tr><tr>';
+                date.setDate(date.getDate() + 1);
+            }
+            
+            if(numDay(date) != 0) {
+                for(let i = numDay(date); i < 7; i++) calendar += '<td></td>';
+            }
+            
+            tbl.innerHTML = '<th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SUT</th><th>SUN</th>' + calendar + '</tr>';
+        });
+    </script>
 </body>
 </html>
