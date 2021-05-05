@@ -35,11 +35,11 @@
     <script>
         let tittles = Array.from(tbl.getElementsByTagName('th'));
         let sortedTr = Array.from(tbl.getElementsByTagName('tr')).slice(1);
-
+        let numbers = /^\d+$/;
         for(let index in tittles) {
             tittles[index].addEventListener('click', () => {
                 sortedTr.sort((rowA, rowB) => {
-                    if(/^\d+$/.test(rowA.cells[index].textContent) && /^\d+$/.test(rowB.cells[index].textContent)) {
+                    if(numbers.test(rowA.cells[index].textContent) && numbers.test(rowB.cells[index].textContent)) {
                         return rowA.cells[index].textContent - rowB.cells[index].textContent;
                     }
                     return rowA.cells[index].textContent.localeCompare(rowB.cells[index].textContent);

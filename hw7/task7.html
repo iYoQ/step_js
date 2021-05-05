@@ -58,7 +58,7 @@
         }
         
         for(let book of books) {
-            book.addEventListener("click", (e) => {
+            book.addEventListener("click", e => {
                 if(e.ctrlKey) e.target.style.backgroundColor =  '#ffa251';
                 else if(e.shiftKey) shiftSelect(e);
                 else {
