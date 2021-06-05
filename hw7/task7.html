@@ -37,28 +37,28 @@
     <script>
         let books = Array.from(list.getElementsByTagName('li'));
 
-        function clear() {
+        clear = () => {
             books.map(x => x.style.backgroundColor = '');
         }
-        function shiftSelect(e) {
+        shiftSelect = e => {
             let field = books.filter(x => x.style.backgroundColor != '');
             let lastElem = books.indexOf(field[field.length - 1]);
             let targetElem = books.indexOf(e.target);
             
             if(lastElem < targetElem) {
-                for(elem = lastElem; elem <= targetElem; elem++) {
+                for(let elem = lastElem; elem <= targetElem; elem++) {
                     books[elem].style.backgroundColor =  '#ffa251';
                 }   
             }
             else {
-                for(elem = lastElem; elem >= targetElem; elem--) {
+                for(let elem = lastElem; elem >= targetElem; elem--) {
                     books[elem].style.backgroundColor =  '#ffa251';
                 }
             }
         }
         
         for(let book of books) {
-            book.addEventListener("click", e => {
+            book.addEventListener('click', e => {
                 if(e.ctrlKey) e.target.style.backgroundColor =  '#ffa251';
                 else if(e.shiftKey) shiftSelect(e);
                 else {

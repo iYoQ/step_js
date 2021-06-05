@@ -44,8 +44,8 @@
             if(e.target.id == 'arrowRight') i++;
             if(e.target.id == 'arrowLeft') i--;
 
-            i == listLen ? arrowRight.disabled = true : arrowRight.disabled = false;
-            i == 0 ? arrowLeft.disabled = true : arrowLeft.disabled = false;
+            arrowRight.disabled = i == listLen ? true : false;
+            arrowLeft.disabled = i == 0 ? true : false;
 
             image.src = listImg[i];
         });
