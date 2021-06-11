@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+            background-color: #FCF0C7;
+        }
+        .tittle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 30px;
+            border: 1px solid black;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .text {
+            border: 1px solid black;
+            padding: 10px;
+            overflow: auto;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div id="forum">
+            <div id="msg">
+                <div class="tittle"><div class="nick">Name</div> <div class="time">11.06.2021, 20:54:12</div></div>
+                <div class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, mollitia!</div>
+            </div>
+        </div>
+        <p><b>Add new message:</b></p>
+        <form method="GET">    
+            <b>Your name:</b> <input type="text" name="userName">
+            <b>Your message:</b> <textarea name="userMessage" cols="10" rows="3"></textarea>
+            <br>
+            <input type="button" name="sendMessage" value="Send" id="send">
+        </form>
+    </div>
+
+    <script>
+        send.addEventListener('click', () => {
+            if(typeof msgCounter == 'undefined') msgCounter = 1;
+
+            msgCounter++;
+
+            let f = document.forms[0];
+
+            forum.appendChild(document.createElement('br'));
+
+            let newMsg = msg.cloneNode(true);
+            newMsg.id = 'msg' + msgCounter;
+
+            let newNick = newMsg.getElementsByClassName('nick');
+            newNick[0].textContent = f.elements['userName'].value;
+
+            let newTime = newMsg.getElementsByClassName('time');
+            newTime[0].textContent = new Date().toLocaleString();
+
+            let newText = newMsg.getElementsByClassName('text');
+            newText[0].textContent = f.elements['userMessage'].value;
+
+            forum.appendChild(newMsg);
+
+            f.elements['userName'].value = '';
+            f.elements['userMessage'].value = '';
+        });
+    </script>
+</body>
+</html>
