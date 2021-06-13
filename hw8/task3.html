@@ -50,15 +50,15 @@
         showTextBtn.addEventListener('click', () => {
             let f = document.forms[0];
 
-            if(f.elements['weight'].checked) result.style.fontWeight = f.elements['weight'].value;
-            if(f.elements['decor'].checked) result.style.textDecoration = f.elements['decor'].value;
-            if(f.elements['style'].checked) result.style.fontStyle = f.elements['style'].value;
+            result.style.fontWeight = f.elements['weight'].checked ? f.weight.value : 'normal';
+            result.style.textDecoration = f.elements['decor'].checked ? f.decor.value : 'none';
+            result.style.fontStyle = f.elements['style'].checked ? f.style.value : 'normal';
 
-            for(radiobtn of f.elements['align']) {
+            for(radiobtn of f.align) {
                 if(radiobtn.checked) result.style.textAlign = radiobtn.value;
             }
             out.style.display = 'block';
-            result.textContent = f.elements['text'].value;
+            result.textContent = f.text.value;
         });
     </script>
 </body>
