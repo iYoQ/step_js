@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<style>
-		body {
-			display: flex;
-			justify-content: center;
-			flex-direction: column;
-			align-items: center;
-		}
-		form {
-			display: flex;
-			width: 370px;
-			flex-flow: row wrap;
-		}
-		#out {
-			width: 370px;
-			margin-top: 20px;
-			border: 1px solid black;
-			display: none;
-			padding: 0 10px 10px 10px;
-		}
-		.btn {
-			margin-top: 10px;
-			width: 370px;
-			height: 30px;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        form {
+            display: flex;
+            width: 370px;
+            flex-flow: row wrap;
+        }
+        #out {
+            width: 370px;
+            margin-top: 20px;
+            border: 1px solid black;
+            display: none;
+            padding: 0 10px 10px 10px;
+        }
+        .btn {
+            margin-top: 10px;
+            width: 370px;
+            height: 30px;
+        }
+    </style>
 </head>
 <body>
-	<form method="GET">
-		<p><input type="checkbox" name="weight" value="bold">Bold</p>
-		<p><input type="checkbox" name="decor" value="underline">Underline</p>
-		<p><input type="checkbox" name="style" value="italic">Italics</p>
-		<p><input type="radio" name="align" value="left" checked>Left</p>
-		<p><input type="radio" name="align" value="right">Right</p>
-		<p><input type="radio" name="align" value="justify">Justify</p>
-		<textarea name="text" cols="50" rows="10"></textarea>
-		<input type="button" value="Show text" class="btn" id="showTextBtn">
-	</form>
-	<div id="out">
-		<p><b>Result: </b></p>
-		<div id="result"></div>
-	</div>
+    <form method="GET">
+        <p><input type="checkbox" name="weight" value="bold">Bold</p>
+        <p><input type="checkbox" name="decor" value="underline">Underline</p>
+        <p><input type="checkbox" name="style" value="italic">Italics</p>
+        <p><input type="radio" name="align" value="left" checked>Left</p>
+        <p><input type="radio" name="align" value="right">Right</p>
+        <p><input type="radio" name="align" value="justify">Justify</p>
+        <textarea name="text" cols="50" rows="10"></textarea>
+        <input type="button" value="Show text" class="btn" id="showTextBtn">
+    </form>
+    <div id="out">
+        <p><b>Result: </b></p>
+        <div id="result"></div>
+    </div>
 
-	<script>
-		showTextBtn.addEventListener('click', () => {
-			let f = document.forms[0];
+    <script>
+        showTextBtn.addEventListener('click', () => {
+            let f = document.forms[0];
 
-			if(f.elements['weight'].checked) result.style.fontWeight = f.elements['weight'].value;
-			if(f.elements['decor'].checked) result.style.textDecoration = f.elements['decor'].value;
-			if(f.elements['style'].checked) result.style.fontStyle = f.elements['style'].value;
+            if(f.elements['weight'].checked) result.style.fontWeight = f.elements['weight'].value;
+            if(f.elements['decor'].checked) result.style.textDecoration = f.elements['decor'].value;
+            if(f.elements['style'].checked) result.style.fontStyle = f.elements['style'].value;
 
-			for(radiobtn of f.elements['align']) {
-				if(radiobtn.checked) result.style.textAlign = radiobtn.value;
-			}
-			out.style.display = 'block';
-			result.textContent = f.elements['text'].value;
-		});
-	</script>
+            for(radiobtn of f.elements['align']) {
+                if(radiobtn.checked) result.style.textAlign = radiobtn.value;
+            }
+            out.style.display = 'block';
+            result.textContent = f.elements['text'].value;
+        });
+    </script>
 </body>
 </html>
