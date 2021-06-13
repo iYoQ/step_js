@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.main {
+			display: flex;
+			width: 1600px;
+		}
+		.books {
+			display: flex;
+		}
+		.book {
+			padding: 20px;
+			margin: 10px;
+			border: 1px solid black;
+			width: 300px;
+		}
+		.btnSelect {
+			width: 300px;
+		}
+		.price {
+			font-weight: bold;
+			text-align: right;
+		}
+		form {
+			border: 1px solid black;
+			padding: 20px;
+			margin: 10px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 310px;
+		}
+		.formInput {
+			display: flex;
+			justify-content: space-between;
+		}
+        #buyWindow {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            justify-content: center;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            overflow: auto;
+        }
+        #buyModalWindow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 100px;
+            width: 600px;
+            height: 200px;
+            background-color: #353335c9;
+            color: #E3E3E3;
+            font-size: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        #closeModalWindow {
+        	margin-top: 20px;
+            height: 30px;
+            width: 100px;
+        }
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="books">
+			<div class="book">
+				<img src="img/1.jpg" width="300px" height="400px" alt="">
+				<div class="bookName" id="firstPlace">
+					<b>JavaScript Design Patterns</b>
+					<br>
+					Addy Osmani
+					<p class="price">16$</p>
+				</div>
+				<input type="button" value="Select" class="btnSelect">
+			</div>
+			<div class="book" id="secondPlace">
+				<img src="img/2.jpg" width="300px" height="400px" alt="">
+				<div class="bookName">
+					<b>JavaScript for impatient programmers</b>
+					<br>
+					Dr. Axel Rauschmayer
+					<p class="price">20$</p>
+				</div>
+				<input type="button" value="Select" class="btnSelect">
+			</div>
+			<div class="book" id="thirdPlace">
+				<img src="img/3.jpg" width="300px" height="400px" alt="">
+				<div class="bookName">
+					<b>Scrope & Closures</b>
+					<br>
+					Kyle Simpson
+					<p class="price">22$</p>
+				</div>
+				<input type="button" value="Select" class="btnSelect">
+			</div>
+		</div>
+		<form method="GET">
+			<div class="formInput">Book: <input type="text" name='bookName' disabled></div>
+			<div class="formInput">Quantity: <input type="number" name="quantity"></div>
+			<div class="formInput">Name: <input type="text" name="Name"></div>
+			<div class="formInput">Delivery address: <textarea name="deliveryAddress" cols="22" rows="5"></textarea></div>
+			<div class="formInput">Delivery date: <input type="date" name="deliveryDate"></div>
+			<div class="formInput">Comment: <textarea name="comment" cols="22" rows="5"></textarea></div>
+			<input type="button" name="buy" id="btnBuy" value="Buy">
+		</form>
+		<div id="buyWindow">
+        	<div id="buyModalWindow">
+            	<button id="closeModalWindow">Close</button>
+        </div>
+    </div>
+		<script>
+			let f = document.forms[0];
+
+			let btnSel = document.getElementsByClassName('btnSelect');
+			for(btn of btnSel) {
+				btn.addEventListener('click', e => {
+					let name = e.target.previousElementSibling;
+					f.elements['bookName'].value = name.textContent.replace(/\s+/g, ' ').trim();
+				});
+			}
+
+			btnBuy.addEventListener('click', () => {
+				buyWindow.style.display = 'flex';
+
+				str = document.createElement('div');
+				str.appendChild(document.createTextNode(f.elements['Name'].value + ', thanks for the order!'));
+				str.appendChild(document.createElement('br'));
+				str.appendChild(document.createTextNode('Book ' + '"' + f.elements['bookName'].value + '"' + ' will be delivered on ' + f.elements['deliveryAddress'].value + ' to ' + f.elements['deliveryDate'].value));
+				buyModalWindow.insertBefore(str, closeModalWindow);
+			});
+			
+			closeModalWindow.addEventListener('click', () => {
+				str.textContent = '';
+				buyWindow.style.display = 'none';
+			});
+			
+		</script>
+	</div>
+</body>
+</html>
