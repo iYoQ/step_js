@@ -69,30 +69,70 @@
         let lessonList = {};
         
         f.selectBtn.addEventListener('click', () => {
-            list.style.display = 'block';
+            if(Object.keys(lessonList).length != 0) {
+                for(let key in lessonList) {
+                    if((lessonList[key].group == f.group.value) && (lessonList[key].lessonNum == f.lesson.value)) {
+                        list.style.display = 'none';
+                        clearView();
+                        showLesson(key);
+                        return
+                    }
+                    clearView();
+                    list.style.display = 'block';
+                }
+            }
+            else list.style.display = 'block';
         });
 
         f.saveBtn.addEventListener('click', () => {
             lessonList[f.topic.value] = {};
             lessonList[f.topic.value].students = {};
-            students = lessonList[f.topic.value].students
             lessonList[f.topic.value].group = f.group.value;
             lessonList[f.topic.value].lessonNum = f.lesson.value;
+            let students = lessonList[f.topic.value].students
+
             let check = document.getElementsByClassName('check');
             for(let inp of check) {
                 students[inp.value] = inp.checked ? 'present' : '';
             }
 
+            f.reset();
+            list.style.display = 'none';
+            
+        });
+
+        showLesson = (topicValue) => {
             let out = document.createElement('div');
-            out.appendChild(document.createTextNode('Topic: ' + f.topic.value));
-            out.appendChild(document.createElement('br'));
-            Object.keys(students).map(key => {
-                out.appendChild(document.createTextNode(key + ' ------- ' + students[key]));
-                out.appendChild(document.createElement('br'));
-            });
+            out.id = 'viewLesson';
+
+            out.appendChild(document.createTextNode('Topic: ' + topicValue));
+            out.appendChild(document.createElement('hr'));
+
+            let currentStudents = lessonList[topicValue].students
+
+            for(let key in currentStudents) {
+                let outDiv = document.createElement('div');
+                let outPKey = document.createElement('p');
+                let outPValue = document.createElement('p');
+
+                outDiv.className = 'studentCheck';
+                outPKey.appendChild(document.createTextNode(key));
+                outPValue.appendChild(document.createTextNode(currentStudents[key]));
+                outDiv.appendChild(outPKey);
+                outDiv.appendChild(outPValue);
+                out.appendChild(outDiv);
+                out.appendChild(document.createElement('hr'));
+            };
 
             f.appendChild(out);
-        });
+        }
+
+        clearView = () => {
+            let viewLesson = document.getElementById('viewLesson');
+
+            if(viewLesson) f.removeChild(viewLesson);
+        }
+
     </script>
     
 </body>
