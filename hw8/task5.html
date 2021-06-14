@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width: 500px;
+        }
+        .lessonName {
+            width: 400px;
+        }
+        .tittle {
+            display: flex;
+            justify-content: space-between;
+        }
+        .studentCheck {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #list {
+            padding-top: 50px;
+            display: none;
+        }
+        .svBtn {
+            width: 500px;
+            height: 30px;
+        }
+        .selBtn {
+            width: 100px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <form method="GET">
+        Group: 
+        <select name="group">
+            <option value="1">Group 1</option>
+            <option value="2">Group 2</option>
+            <option value="3">Group 3</option>
+        </select>
+        Lesson:
+        <select name="lesson">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <input type="button" name="selectBtn" value="Select" class="selBtn">
+        <hr>
+        <div id="list">
+            Topic: <input type="text" name="topic" class="lessonName">
+            <div class="tittle"><p>Name</p> <p>Is present</p></div>
+            <hr>
+            <div class="studentCheck"><p>Student 1</p> <input type="checkbox" class="check" value="Student 1"></div>
+            <hr>
+            <div class="studentCheck"><p>Student 2</p> <input type="checkbox" class="check" value="Student 2"></div>
+            <hr>
+            <div class="studentCheck"><p>Student 3</p> <input type="checkbox" class="check" value="Student 3"></div>
+            <hr>
+            <input type="button" name="saveBtn" value="Save" class="svBtn">
+        </div>
+    </form>
+
+    <script>
+        let f = document.forms[0];
+        let lessonList = {};
+        
+        f.selectBtn.addEventListener('click', () => {
+            list.style.display = 'block';
+        });
+
+        f.saveBtn.addEventListener('click', () => {
+            lessonList[f.topic.value] = {};
+            lessonList[f.topic.value].students = {};
+            students = lessonList[f.topic.value].students
+            lessonList[f.topic.value].group = f.group.value;
+            lessonList[f.topic.value].lessonNum = f.lesson.value;
+            let check = document.getElementsByClassName('check');
+            for(let inp of check) {
+                students[inp.value] = inp.checked ? 'present' : '';
+            }
+
+            let out = document.createElement('div');
+            out.appendChild(document.createTextNode('Topic: ' + f.topic.value));
+            out.appendChild(document.createElement('br'));
+            Object.keys(students).map(key => {
+                out.appendChild(document.createTextNode(key + ' ------- ' + students[key]));
+                out.appendChild(document.createElement('br'));
+            });
+
+            f.appendChild(out);
+        });
+    </script>
+    
+</body>
+</html>
