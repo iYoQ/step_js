@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btnA, .btnF {
+            width: 100px;
+            height: 30px;
+        }
+        .btnF {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <form method="GET">
+        <div class="question"><p>How many letters are there in the word "qwerty"?</p>
+            <p><input type="radio" name="answers" value="1"><span>6</span></p>
+            <p><input type="radio" name="answers" value="0"><span>7</span></p>
+        </div>
+        <input type="button" name="answerBtn" value="Next" class="btnA">
+        <input type="button" name="finishBtn" value="Finish" class="btnF">
+    </form>
+
+    <script>
+        let f = document.forms[0];
+        let questionList = [{
+            'quest':'How many letters are there in the word "Hello"?',
+            'answer':'5',
+        }, {
+            'quest':'How much is 5+3?', 
+            'answer':'8'
+        }, {
+            'quest':'How much is 3*3?',
+            'answer':'9'
+        }];
+
+        f.answerBtn.addEventListener('click', () => {
+            if(typeof countQuestion == 'undefined') countQuestion = 0;
+
+            checkPoints();
+
+            let newQuestion = document.getElementsByClassName('question')[0].firstChild;
+            newQuestion.textContent = questionList[countQuestion].quest;
+
+            clearAndSetValue(questionList[countQuestion]);
+
+            if(countQuestion == questionList.length-1) {
+                f.answerBtn.style.display = 'none';
+                f.finishBtn.style.display = 'block';
+            }
+            else countQuestion++;
+
+            f.reset();
+        });
+
+        f.finishBtn.addEventListener('click', () => {
+            totalPoints = checkPoints();
+
+            f.finishBtn.disabled = true;
+
+            let res = document.createTextNode('Result: ' + totalPoints + ' correct answers to ' + (questionList.length+1) + ' questions.');
+            f.appendChild(document.createElement('br'));
+            f.appendChild(res);
+        });
+
+        clearAndSetValue = question => {
+            for(let reply of f.answers) reply.value = 0;   
+
+            f.answers[Math.floor(Math.random() * 2)].value = 1;
+
+            for(let reply of f.answers) {
+                reply.nextElementSibling.textContent = reply.value==1 ? question.answer : Math.floor(Math.random() * 10);
+            }
+
+        }
+
+        checkPoints = () => {
+            if(typeof points == 'undefined') points = 0;
+
+            for(let reply of f.answers) {
+                if(reply.checked) points += Number(reply.value);
+            }
+            
+            return points;
+        }
+    </script>
+    
+</body>
+</html>
