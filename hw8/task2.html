@@ -70,12 +70,23 @@
         clearAndSetValue = question => {
             for(let reply of f.answers) reply.value = 0;   
 
-            f.answers[Math.floor(Math.random() * 2)].value = 1;
+            let inputCount = f.answers.length;
+            f.answers[Math.floor(Math.random() * inputCount)].value = 1;
 
             for(let reply of f.answers) {
-                reply.nextElementSibling.textContent = reply.value==1 ? question.answer : Math.floor(Math.random() * 10);
+                if(reply.value == 1) reply.nextElementSibling.textContent = question.answer;
+                else {
+                    while(true) {
+                        let maxValue = 10;
+                        let randomAnswer = Math.floor(Math.random() * maxValue);
+                        if(randomAnswer == question.answer) continue;
+                        else {
+                            reply.nextElementSibling.textContent = randomAnswer;
+                            break;
+                        }
+                    }
+                }
             }
-
         }
 
         checkPoints = () => {
