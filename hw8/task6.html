@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width: 600px;
+        }
+        #container {
+            height: 70px;
+            width: 600px;
+            flex-direction: column;
+            flex-wrap: wrap;
+            display: flex;
+        }
+        #seat {
+            display: none;
+            
+        }
+        .numSeat {
+            height: 30px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btnField {
+            width: 600px;
+            text-align: right;
+            display: none;
+        }
+        .btn {
+            width: 100px;
+            height: 25px;
+        }
+        #viewTicket {
+            display: none;
+
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid grey;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form method="GET">
+        Direction: 
+        <select name="direction">
+            <option value="rostov_msk">Rostov - Moscow</option>
+            <option value="msk_spb">Moscow - Spb</option>
+        </select>
+        Date: <input type="date" name="travelDate">
+        <input type="button" value="Search" name="searchBtn" class="btn">
+        <hr>
+        <div id="seat"></div>
+        <div class="btnField">Total price: <span id="totalPrice"></span><input type="button" value="Book" name="buyTicket" class="btn"></div>
+    </form>
+    <table id="viewTicket">
+        <th>Direction</th><th>Date</th><th>Seat</th>
+
+    </table>
+    <script>
+        let f = document.forms[0];
+        let price = 50;
+        let ticketList = {};
+        let buyBtn = document.getElementsByClassName('btnField')[0];
+
+        f.searchBtn.addEventListener('click', () => {
+            viewTicket.style.display = 'none';
+            if(Object.keys(ticketList).length != 0) {
+                for(let key in ticketList) {
+                    if((ticketList[key].direction == f.direction.value) && (ticketList[key].date == f.travelDate.value)) {
+                        clearView();
+                        drawTicket(ticketList[key]);
+                        buyBtn.style.display = 'none';
+                        return
+                    }
+                    drawSeat();
+                }
+            }
+            else {
+                drawSeat();
+            }
+        });
+
+        f.buyTicket.addEventListener('click', () => {
+            let ticketName = f.direction.value + f.travelDate.value;
+            ticketList[ticketName] = {};
+            ticketList[ticketName].direction = f.direction.value;
+            ticketList[ticketName].date = f.travelDate.value;
+            ticketList[ticketName].seat = [];
+
+            let check = document.getElementsByClassName('checkSeat');
+            for(let buy of check) {
+                if(buy.checked) ticketList[ticketName].seat.push(buy.previousSibling.textContent);
+
+            }
+
+            f.reset();
+            seat.style.display = 'none';
+            document.getElementsByClassName('btnField')[0].style.display = 'none';
+        });
+
+        drawSeat = () => {
+            clearView();
+
+            buyBtn.style.display = 'block';
+
+            seat.style.display = 'block';
+            let divContainer = document.createElement('div');
+            divContainer.id = 'container';
+
+            for(let i = 1; i <= 28; i++) {
+                let num = document.createElement('input');
+                num.type = 'checkbox';
+                num.value = price;
+                num.className = 'checkSeat'
+                
+                num.addEventListener('change', () => {
+                    totalPrice.textContent = Number(totalPrice.textContent) + Number(num.value);
+                });
+
+                let numDiv = document.createElement('div');
+                numDiv.textContent = i;
+                numDiv.className = 'numSeat';
+                numDiv.appendChild(num);
+
+                divContainer.appendChild(numDiv);
+
+                seat.appendChild(divContainer);
+            }
+        }
+
+        drawTicket = (ticketValue) => {
+            viewTicket.style.display = 'block';
+            for(let ticket of ticketValue.seat) {
+                let r = viewTicket.insertRow();
+                let c = r.insertCell();
+                c.textContent = ticketValue.direction;
+
+                let c1 = r.insertCell();
+                c1.textContent = ticketValue.date;
+
+                let c2 = r.insertCell();
+                c2.textContent = ticket;
+            }
+
+        }
+
+        clearView = () => {
+            let viewSeat = document.getElementById('container');
+
+            if(viewSeat) seat.removeChild(viewSeat);
+
+            let firstRow = document.getElementsByTagName('tr')[1];
+
+            if(firstRow) {
+                while(viewTicket.rows[1]) viewTicket.deleteRow(1); 
+            }
+
+            
+        }
+    </script>
+</body>
+</html>
