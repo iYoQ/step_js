@@ -107,7 +107,7 @@
         <form method="GET">
             <div class="formInput">Book: <input type="text" name='bookName' disabled></div>
             <div class="formInput">Quantity: <input type="number" name="quantity"></div>
-            <div class="formInput">Name: <input type="text" name="Name"></div>
+            <div class="formInput">Name: <input type="text" name="name"></div>
             <div class="formInput">Delivery address: <textarea name="deliveryAddress" cols="22" rows="5"></textarea></div>
             <div class="formInput">Delivery date: <input type="datetime-local" name="deliveryDate"></div>
             <div class="formInput">Comment: <textarea name="comment" cols="22" rows="5"></textarea></div>
@@ -136,7 +136,7 @@
             buyWindow.style.display = 'flex';
 
             str = document.createElement('div');
-            str.appendChild(document.createTextNode(f.elements['Name'].value + ', thanks for the order!'));
+            str.appendChild(document.createTextNode(f.elements['name'].value + ', thanks for the order!'));
             str.appendChild(document.createElement('br'));
             str.appendChild(document.createTextNode('Book ' + '"' + f.elements['bookName'].value + '"' + ' will be delivered on ' + f.elements['deliveryAddress'].value + ' to ' + f.elements['deliveryDate'].value));
                 buyModalWindow.insertBefore(str, closeModalWindow);
