@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin-bottom: 30px;
+    }
+    .tittle {
+        align-self: center;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+    .lowTittle {
+        display: flex;
+        justify-content: space-between;
+    }
+    input, select {
+        margin-bottom: 10px;
+    }
+    select{
+        text-indent: 15px;
+    }
+    .color {
+        width: 400px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .colorText {
+        width: 200px;
+        height: 100px;
+        background-color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        white-space: pre;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .colorList {
+        width: 1650px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .warning {
+        color: red;
+        text-align: right;
+    }
+    </style>
+</head>
+<body>
+    <form method="GET">
+        <div class="tittle">Create new color</div>
+        <div class="lowTittle">Color: <div class="warning"></div></div>
+        <input type="text" name="colorName">
+        Type:
+         <select name="colorType">
+            <option value="RGB">RGB</option>
+            <option value="RGBA">RGBA</option>
+            <option value="HEX">HEX</option>
+        </select>
+        <div class="lowTittle">Code: <div class="warning"></div></div>
+        <input type="text" name="colorCode">
+        <input type="button" value="Save" name="saveButton">
+    </form>
+    <div class="tittle">All colors</div>
+    <div class="colorList"></div>
+
+    <script>
+        let f = document.forms[0];
+        let warningName = document.getElementsByClassName('warning')[0];
+        let warningCode = document.getElementsByClassName('warning')[1];
+
+        validName = () => {
+            if (/[^a-zA-Z]/.test(f.colorName.value))  {
+                    return 'use only letters';
+                }
+
+            if (f.colorName.value.length < 1) {
+                return 'name must be more than 1 letters'
+            }
+
+            let patternAlredyUse = new RegExp('^\\b' + f.colorName.value + '\\b', 'i')
+            let colorNameList = document.getElementsByClassName('colorText');
+            for(elem of colorNameList) {
+                if(patternAlredyUse.test(elem.textContent)) {
+                    return 'name alredy use';
+                } 
+            }
+
+            return '';
+        }
+
+        validCode = () => {
+            if (f.colorType.value == 'RGB') {
+                if (/^(([0-1]\d{2}|2[0-5]{2}), ?){2}([0-1]\d{2}|2[0-5]{2})$/.test(f.colorCode.value)) {
+                    return '';
+                }
+
+                return 'RGB code must match the patten [0-255], [0-255], [0-255]'
+
+            }
+            if (f.colorType.value == 'RGBA') {
+                if (/^(([0-1]\d{2}|2[0-5]{2}), ?){3}(0$|0\.\d?$|1$)/.test(f.colorCode.value)) {
+                    return '';
+                }
+                
+                return 'RGBA code must match the patten [0-255], [0-255], [0-255], [0-1]'
+            }
+            if (f.colorType.value == 'HEX') {
+                if (/^#[0-9A-Fa-f]{6}$/.test(f.colorCode.value)) {
+                    return '';
+                }
+                return 'HEX code must be start with # and include six numbers or letters A-F'
+            }
+
+            return 'whats wrong';
+        }
+
+        createColor = (name, type, code) => {
+            if (typeof colorCount == 'undefined') {
+                    colorCount = 1;
+                }
+
+            let container = document.createElement('div');
+            container.className = 'color';
+            container.id = 'colorId' + colorCount++;
+            container.style.backgroundColor = type == 'HEX' ? code : type + '(' + code + ')';
+
+            let containerInside = document.createElement('div');
+            containerInside.className = 'colorText'
+            containerInside.textContent = name + '\r\n' + type + '\r\n' + code;
+
+            container.appendChild(containerInside);
+            document.getElementsByClassName('colorList')[0].appendChild(container);
+        }
+
+
+        f.colorName.addEventListener('input', () => {
+            warningName.textContent = validName();
+
+        });
+        f.colorCode.addEventListener('input', () => {
+            warningCode.textContent = validCode();
+        });
+
+        f.saveButton.addEventListener('click', () => {
+            if(!validCode() && !validName()) {
+
+                createColor(f.colorName.value, f.colorType.value, f.colorCode.value);
+                
+            }
+            else {
+                warningName.textContent = validName();
+                warningCode.textContent = validCode();
+            }
+
+            f.reset();
+        });
+    </script>
+</body>
+</html> 
